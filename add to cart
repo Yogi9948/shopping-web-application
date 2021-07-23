@@ -1,0 +1,52 @@
+package login;
+import java.util.Iterator;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class addtocart {
+	
+
+	WebDriver driver;
+	 @BeforeMethod
+	    void setUp()
+	     {
+		  WebDriverManager.chromedriver().setup();
+		  ChromeOptions options=new ChromeOptions();
+	   	 	options.addArguments("disable-notifications");
+		  driver= new ChromeDriver(options);
+	     }
+	 @Test(description="User can able to click Add to button successful.")
+	          
+	 void click_AddToCart() throws InterruptedException {
+		 driver.get("https://www.bewakoof.com/");
+		 driver.findElement(By.className("searchInput form-controls")).sendKeys("shirts");
+		 driver.findElement(By.className("searchInput form-controls")).sendKeys(Keys.ENTER);
+		 driver.findElement(By.xpath("//*[@id=\"testProductcard_3\"]/a/div")).click();
+		 WebElement size=driver.findElement(By.cssSelector("#testSizes_L > span"));
+		 Actions action=new Actions(driver);
+		 action.moveToElement(size).click().perform();
+		    driver.findElement(By.cssSelector("#addToCart > span")).click();
+		    
+		    System.out.println("Test cases passed");
+		 System.out.println("AddToCart button clicked successfully");
+	
+		 }
+
+	 @AfterMethod
+	 void tearDown()
+	 {
+	 driver.close();
+	 }
+	 }
