@@ -6,9 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -36,29 +38,19 @@ public class existingusercheck{
      	 action.doubleClick(element).perform(); 
      	WebElement element2 = driver.findElement(By.tagName("body"));
         Actions builder = new Actions(driver);
+        Assertion softAssert = new Assertion();
         builder.moveToElement(element2, 0, 0).perform();
       driver.findElement(By.cssSelector(".icon_user")).click();
       driver.findElement(By.id("web_menu_myaccount")).click();
      	String currenturl=driver.getCurrentUrl();
-     	System.out.println(currenturl);
-     	 if(currenturl=="https://www.bewakoof.com/myaccount")
-     	{
-     		System.out.println("login failed");
-     	}
-     	//else
-     	{
-     		System.out.println("login sucess");
-     	}
-     	 
-             			    
-	    		 Thread.sleep(2000);
-	    	
-	    	 
+     	String expectedurl="https://github.com/Yogi9948/shopping-web-application";
+     	 softAssert.assertEquals(currenturl, expectedurl);
+     		System.out.println("login sucessful");		   
 	     }
      
 	     @AfterMethod
 		 void tearDown()
 		 {
-	//	driver.close();
+	driver.close();
 	}
 	}
