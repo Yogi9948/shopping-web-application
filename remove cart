@@ -31,8 +31,8 @@ public class deletecart {
 	     
 	 void check_delete() throws InterruptedException {
 		 driver.get("https://www.bewakoof.com/");
-		 driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[2]/div[1]/header/div[2]/div/div[3]/div[2]/div/form/input")).sendKeys("shirts");
-		 driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[2]/div[1]/header/div[2]/div/div[3]/div[2]/div/form/input")).sendKeys(Keys.ENTER);
+		 driver.findElement(By.tagName("input")).sendKeys("shirts");
+		 driver.findElement(By.tagName("input")).sendKeys(Keys.ENTER);
 		 driver.findElement(By.xpath("//*[@id=\"testProductcard_3\"]/a/div")).click();
 		 WebElement size=driver.findElement(By.cssSelector("#testSizes_L > span"));
 		 Actions action=new Actions(driver);
